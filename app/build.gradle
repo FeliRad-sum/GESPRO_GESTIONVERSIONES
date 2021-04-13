@@ -21,6 +21,12 @@ apply plugin: 'jacoco-android'
 apply plugin: 'realm-android'
 apply plugin: 'io.fabric'
 
+// Versión de la aplicación
+ext . versionMajor =  1  // Cambios en la API, agregando una gran característica nueva, rediseño de la aplicación
+ext . versionMinor =  2  // Nuevas funciones de manera compatible con versiones anteriores
+ext . versionPatch =  0  // Correcciones de errores compatibles con versiones anteriores
+ext . versionClassifier =  null  // Pre-lanzamientos (alfa, beta, rc, SNAPSHOT ...)
+
 // Get signing config
 def keystorePropertiesFile = rootProject.file("secrets/keystore.properties")
 def keystoreProperties = new Properties()
@@ -35,8 +41,8 @@ android {
         applicationId "com.davidmiguel.gobees"
         minSdkVersion 19
         targetSdkVersion 26
-        versionCode 11
-        versionName "v1.1"
+        versionCode generateVersionCode ()
+        versionName generateVersionName ()
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         manifestPlaceholders = [
                 crashlyticsKey: keystoreProperties['CrashlyticsKey']
@@ -257,6 +263,38 @@ sonarqube {
         property "sonar.java.coveragePlugin", "jacoco"
         property "sonar.jacoco.reportMissing.force.zero", true
     }
+}
+
+/ **
+ * Devuelve el número de compilación actual en Travis.
+ * /
+ Entero estático  privado getBuildNumber () { 
+     Sistema de retorno . getenv () [ " TRAVIS_BUILD_NUMBER " ] como  entero  ?:  0
+}
+
+/ **
+ * Código de versión: MMMmmppbbb
+ * /
+private  Integer  generateVersionCode () {
+    Número entero versionCode = ext . versionMajor *  10000000  +
+            ext . versiónMinor *  100000  +
+            ext . versionPatch *  1000  +
+            (getBuildNumber () %  1000 )
+    println  " Código de versión: "  + versionCode
+    return versionCode
+}
+
+/ **
+ * Nombre de la versión: <mayor>. <Menor>. <parche>
+ * Para mock, dev, tst y acc <build> se adjuntan al final.
+ * /
+private  String  generateVersionName () {
+    String versionName =  " $ { ext.versionMajor } . $ { Ext.versionMinor } . $ { Ext.versionPatch } "
+    if (ext . versionClassifier ! =  null ) {
+        versionName + =  " - "  + ext . versionClassifier
+    }
+    println  " Nombre de la versión: "  + versionName
+    return versionName;
 }
 
 /**
