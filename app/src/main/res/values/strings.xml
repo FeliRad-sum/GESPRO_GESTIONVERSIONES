@@ -602,6 +602,8 @@
     <!-- Changelog [CHAR LIMIT=NONE] -->
     <string name="changelog" translatable="false">
         <![CDATA[
+		 <b> Versión 1.2: </b> <br/>
+        - Pequeñas mejoras y correcciones. <br/> <br/>
         <b>Version 1.1:</b><br/>
         - Add user guide.<br/>
         - Minor improvements and fixes.<br/><br/>
