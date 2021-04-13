@@ -42,7 +42,7 @@ import com.davidmiguel.gobees.utils.AndroidUtils;
 
 import java.util.Locale;
 
-import rebus.permissionutils.AskagainCallback;
+importar  rebus.permissionutils. AskAgainCallback ;
 import rebus.permissionutils.PermissionEnum;
 import rebus.permissionutils.PermissionManager;
 import rebus.permissionutils.PermissionUtils;
@@ -79,12 +79,12 @@ public class AddEditApiaryFragment extends Fragment implements AddEditApiaryCont
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.addeditapiary_frag, container, false);
-        nameEditText = (EditText) root.findViewById(R.id.add_apiary_name);
-        latitudeEditText = (EditText) root.findViewById(R.id.add_apiary_latitude);
-        longitudeEditText = (EditText) root.findViewById(R.id.add_apiary_longitude);
-        getLocationIcon = (ImageView) root.findViewById(R.id.get_location_icon);
-        locationPrecisionTextView = (TextView) root.findViewById(R.id.location_precision);
-        notesEditText = (EditText) root.findViewById(R.id.add_apiary_notes);
+        nameEditText = raíz . findViewById ( R . ID . add_apiary_name);
+        latitudeEditText = raíz . findViewById ( R . ID . add_apiary_latitude);
+        longitudeEditText = raíz . findViewById ( R . ID . add_apiary_longitude);
+        getLocationIcon = raíz . findViewById ( R . ID . get_location_icon);
+        locationPrecisionTextView = raíz . findViewById ( R . ID . location_precision);
+        notesEditText = raíz . findViewById ( R . ID . add_apiary_notes);
 
         setHasOptionsMenu(true);
         setRetainInstance(true);
@@ -104,8 +104,7 @@ public class AddEditApiaryFragment extends Fragment implements AddEditApiaryCont
         });
 
         // Configure floating action button
-        FloatingActionButton fab =
-                (FloatingActionButton) getActivity().findViewById(R.id.fab_add_apiary);
+        FloatingActionButton fab = getActivity () . findViewById ( R . ID . fab_add_apiary);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -199,10 +198,10 @@ public class AddEditApiaryFragment extends Fragment implements AddEditApiaryCont
             return true;
         }
         // Ask for permission
-        PermissionManager.with(getActivity())
+          PermissionManager . Constructor ( )
                 .permission(PermissionEnum.ACCESS_FINE_LOCATION)
-                .askagain(true)
-                .askagainCallback(new AskagainCallback() {
+                askAgain ( cierto )
+                . askAgainCallback ( nuevo  AskAgainCallback () {
                     @Override
                     public void showRequestPermission(final UserResponse response) {
                         new AlertDialog.Builder(getActivity())
@@ -244,7 +243,7 @@ public class AddEditApiaryFragment extends Fragment implements AddEditApiaryCont
                         }
                     }
                 })
-                .ask();
+                 .ask ( getActivity () );
         return false;
     }
 
@@ -256,7 +255,8 @@ public class AddEditApiaryFragment extends Fragment implements AddEditApiaryCont
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
-        PermissionManager.handleResult(requestCode, permissions, grantResults);
+       super . onRequestPermissionsResult (requestCode, permisos, grantResults);
+        PermissionManager . handleResult ( esto , requestCode, permissions, grantResults);
     }
 
     @Override
